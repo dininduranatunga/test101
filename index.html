@@ -1,0 +1,847 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Motor Insurance | Buy Online | Solarelle Insurance</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --primary:       #616DB3;   /* rgb(97,109,179) — exact WhatFont reading  */
+      --primary-dark:  #4A56A9;
+      --primary-light: #EEF0FA;
+      --bg:            #EEF0F8;
+      --white:         #FFFFFF;
+      --border:        #E2E5F0;
+      --text:          #353A3E;   /* rgb(53,58,62)  — WhatFont input text      */
+      --muted:         #6B7280;
+      --error:         #DC2626;
+      --error-bg:      rgba(220,38,38,.07);
+      --font:          'Poppins', ui-sans-serif, system-ui, sans-serif;
+      --shadow:        0 4px 32px rgba(97,109,179,.12);
+    }
+
+    body { font-family: var(--font); background: var(--bg); color: var(--text); min-height: 100vh; }
+
+    /* ══ NAVBAR ══════════════════════════════════════════════ */
+    .site-nav { background: var(--white); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 100; }
+    .nav-inner { max-width: 1200px; margin: 0 auto; padding: 0 32px; height: 64px; display: flex; align-items: center; gap: 24px; }
+
+    .nav-logo { text-decoration: none; display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
+    .logo-icon { width: 42px; height: 42px; }
+    .logo-wordmark { line-height: 1.15; }
+    .logo-brand { font-size: 16px; font-weight: 700; color: var(--text); letter-spacing: -.3px; }
+    .logo-brand em { color: var(--primary); font-style: normal; }
+    .logo-sub { font-size: 8.5px; font-weight: 600; letter-spacing: 2.8px; text-transform: uppercase; color: var(--muted); }
+
+    .nav-links { flex: 1; display: flex; align-items: center; gap: 2px; list-style: none; }
+    .nav-links a {
+      display: flex; align-items: center; gap: 3px;
+      padding: 7px 11px; text-decoration: none;
+      font-size: 14px; font-weight: 500; color: #374151;
+      border-radius: 6px; transition: color .15s, background .15s; white-space: nowrap;
+    }
+    .nav-links a:hover { color: var(--primary); background: var(--primary-light); }
+    .nav-links a.active { color: var(--primary); }
+    .nav-links a i { font-size: 13px; opacity: .6; }
+
+    .btn-quote {
+      flex-shrink: 0; display: inline-flex; align-items: center;
+      padding: 9px 22px; background: var(--primary); color: #fff;
+      border-radius: 8px; text-decoration: none; font-size: 14px; font-weight: 600;
+      font-family: var(--font); transition: background .15s; white-space: nowrap;
+    }
+    .btn-quote:hover { background: var(--primary-dark); }
+
+    /* ══ PAGE ════════════════════════════════════════════════ */
+    .site-main { max-width: 820px; margin: 0 auto; padding: 40px 24px 80px; }
+
+    /* ══ STEPPER ══════════════════════════════════════════════ */
+    .stepper { display: flex; align-items: flex-start; margin-bottom: 28px; }
+    .step-item { flex: 1; display: flex; flex-direction: column; align-items: center; position: relative; }
+    .step-item:not(:last-child)::after {
+      content: ''; position: absolute;
+      top: 19px; left: calc(50% + 20px); right: calc(-50% + 20px);
+      height: 2px; background: var(--border); transition: background .4s; z-index: 0;
+    }
+    .step-item.done:not(:last-child)::after { background: var(--primary); }
+    .step-circle {
+      width: 38px; height: 38px; border-radius: 50%;
+      border: 2px solid var(--border); background: var(--white);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 13px; font-weight: 600; color: var(--muted);
+      position: relative; z-index: 1; transition: all .3s;
+    }
+    .step-item.active .step-circle {
+      border-color: var(--primary); background: var(--primary); color: #fff;
+      box-shadow: 0 0 0 5px rgba(97,109,179,.18);
+    }
+    .step-item.done .step-circle { border-color: var(--primary); background: var(--primary); color: #fff; }
+    .step-labels { margin-top: 8px; text-align: center; }
+    .step-name { font-size: 10px; font-weight: 700; letter-spacing: .7px; text-transform: uppercase; color: var(--muted); line-height: 1.3; }
+    .step-item.active .step-name, .step-item.done .step-name { color: var(--primary); }
+    .step-hint { font-size: 10px; color: var(--muted); opacity: .7; }
+
+    /* ══ WIZARD CARD ══════════════════════════════════════════ */
+    .wizard-card { background: var(--white); border-radius: 16px; box-shadow: var(--shadow); overflow: hidden; }
+    .card-head { padding: 28px 40px 24px; border-bottom: 1px solid var(--border); }
+    .card-step-tag { font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--primary); margin-bottom: 6px; }
+    .card-title { font-size: 22px; font-weight: 700; color: var(--text); margin-bottom: 4px; }
+    .card-sub { font-size: 14px; color: var(--muted); font-weight: 400; }
+    .card-body { padding: 32px 40px; }
+    .card-foot { padding: 20px 40px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; }
+
+    /* ══ FORM SECTIONS ═══════════════════════════════════════ */
+    .fsec { margin-bottom: 28px; }
+    .fsec:last-child { margin-bottom: 0; }
+    .sec-head { display: flex; align-items: center; gap: 10px; margin-bottom: 18px; padding-bottom: 12px; border-bottom: 1px solid var(--border); }
+    .sec-icon { width: 28px; height: 28px; background: var(--primary-light); border-radius: 6px; display: flex; align-items: center; justify-content: center; }
+    .sec-icon i { font-size: 15px; color: var(--primary); }
+    .sec-title { font-size: 11px; font-weight: 700; letter-spacing: .8px; text-transform: uppercase; color: var(--muted); }
+
+    /* ══ FIELDS ══════════════════════════════════════════════ */
+    .grid { display: grid; gap: 16px; }
+    .g2   { grid-template-columns: 1fr 1fr; }
+    .mb16 { margin-bottom: 16px; }
+
+    .field { display: flex; flex-direction: column; gap: 6px; }
+
+    /* label — Poppins 600, brand colour, 14 px (matches WhatFont) */
+    .field label { font-size: 14px; font-weight: 600; color: var(--primary); }
+    .field label .req { color: var(--error); margin-left: 1px; }
+
+    /* inputs — Poppins 400, dark text, 16 px (matches WhatFont) */
+    .field input,
+    .field select {
+      width: 100%; height: 48px; padding: 0 14px;
+      border: 1.5px solid var(--border); border-radius: 8px;
+      font-family: var(--font); font-size: 16px; color: var(--text);
+      background: var(--white); outline: none;
+      transition: border-color .2s, box-shadow .2s; -webkit-appearance: none;
+    }
+    .field select {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%236B7280' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+      background-repeat: no-repeat; background-position: right 14px center; padding-right: 40px;
+    }
+    .field input:focus, .field select:focus {
+      border-color: var(--primary); box-shadow: 0 0 0 3px rgba(97,109,179,.15);
+    }
+    .field input::placeholder { color: #BFC3D4; font-size: 15px; }
+    .field select option[value=""] { color: var(--muted); }
+
+    .field .hint   { font-size: 12px; color: var(--muted); }
+    .field .err-msg { font-size: 12px; color: var(--error); display: none; }
+    .field.invalid input, .field.invalid select { border-color: var(--error); box-shadow: 0 0 0 3px var(--error-bg); }
+    .field.invalid .err-msg { display: block; }
+    .field.invalid .prefix-wrap { border-color: var(--error); box-shadow: 0 0 0 3px var(--error-bg); }
+
+    /* prefix input (+960) */
+    .prefix-wrap {
+      display: flex; align-items: stretch;
+      border: 1.5px solid var(--border); border-radius: 8px;
+      overflow: hidden; background: var(--white);
+      transition: border-color .2s, box-shadow .2s;
+    }
+    .prefix-wrap:focus-within { border-color: var(--primary); box-shadow: 0 0 0 3px rgba(97,109,179,.15); }
+    .prefix-label {
+      padding: 0 13px; display: flex; align-items: center;
+      font-size: 15px; font-weight: 600; color: var(--muted);
+      background: #F8F9FC; border-right: 1.5px solid var(--border);
+      white-space: nowrap; flex-shrink: 0; font-family: var(--font);
+    }
+    .prefix-wrap input { border: none !important; box-shadow: none !important; border-radius: 0 !important; flex: 1; }
+
+    /* readonly look */
+    .readonly-field { background: #F8F9FC !important; color: var(--muted) !important; cursor: default; }
+
+    /* ══ NAV BUTTONS ══════════════════════════════════════════ */
+    .btn-back {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 10px 22px; border: 1.5px solid var(--border); border-radius: 8px;
+      background: var(--white); font-family: var(--font); font-size: 14px;
+      font-weight: 500; color: var(--muted); cursor: pointer; transition: all .2s;
+    }
+    .btn-back:hover { border-color: var(--primary); color: var(--primary); }
+    .step-counter { font-size: 13px; color: var(--muted); }
+    .step-counter strong { color: var(--primary); }
+    .btn-next {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 11px 30px; background: var(--primary); border: none; border-radius: 8px;
+      font-family: var(--font); font-size: 15px; font-weight: 600; color: #fff;
+      cursor: pointer; transition: all .2s;
+    }
+    .btn-next:hover { background: var(--primary-dark); }
+    .btn-next:active { transform: scale(.98); }
+
+    /* ══ SLIDER ══════════════════════════════════════════════ */
+    /* Viewport clips the horizontal track */
+    .slide-viewport {
+      overflow: hidden;
+      transition: height 0.44s cubic-bezier(0.77, 0, 0.175, 1);
+    }
+
+    /* Track holds all 4 slides side-by-side; translate moves between them */
+    .slide-track {
+      display: flex;
+      width: 400%;           /* 4 slides × 100 % each                         */
+      align-items: flex-start; /* each slide shrinks to its own content height */
+      transition: transform 0.52s cubic-bezier(0.77, 0, 0.175, 1);
+      will-change: transform;
+    }
+
+    /* Each slide = 25 % of the 400 %-wide track = 100 % of the viewport */
+    .slide { width: 25%; min-width: 0; }
+
+    /* ══ SHAKE (invalid fields) ══════════════════════════════ */
+    @keyframes fieldShake {
+      0%      { transform: translateX(0)    scale(1);     }
+      8%      { transform: translateX(-11px) scale(1.005); }
+      18%     { transform: translateX(11px);               }
+      28%     { transform: translateX(-9px);               }
+      38%     { transform: translateX(9px);                }
+      50%     { transform: translateX(-6px);               }
+      62%     { transform: translateX(6px);                }
+      74%     { transform: translateX(-3px);               }
+      86%     { transform: translateX(3px);                }
+      100%    { transform: translateX(0)    scale(1);     }
+    }
+    .shake { animation: fieldShake 0.55s cubic-bezier(.36,.07,.19,.97) both; }
+
+    /* ══ STEP 4 — REVIEW ══════════════════════════════════════ */
+    .review-layout { display: flex; gap: 24px; align-items: flex-start; }
+    .review-summary { flex: 1; border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
+    .rev-head { background: var(--primary); padding: 20px 22px; }
+    .rev-pol-ref { font-size: 11px; font-weight: 600; letter-spacing: .5px; color: rgba(255,255,255,.7); margin-bottom: 4px; }
+    .rev-pol-title { font-size: 17px; font-weight: 700; color: #fff; }
+    .rev-pol-dates { font-size: 13px; color: rgba(255,255,255,.75); margin-top: 3px; }
+    .rev-grid2 { display: grid; grid-template-columns: 1fr 1fr; }
+    .rev-cell { padding: 13px 16px; border-bottom: 1px solid var(--border); }
+    .rev-cell + .rev-cell { border-left: 1px solid var(--border); }
+    .rev-cell.full { grid-column: 1 / -1; }
+    .rc-label { font-size: 10px; font-weight: 700; letter-spacing: .5px; text-transform: uppercase; color: var(--muted); margin-bottom: 4px; }
+    .rc-val { font-size: 14px; font-weight: 600; color: var(--text); }
+    .rev-total { padding: 14px 16px; background: var(--primary-light); }
+    .rev-total .rc-label { color: var(--primary); }
+    .rev-total .rc-val { font-size: 22px; color: var(--primary); }
+
+    .pay-panel { width: 230px; flex-shrink: 0; border: 1px solid var(--border); border-radius: 12px; padding: 20px; }
+    .pay-panel-title { font-size: 15px; font-weight: 700; color: var(--text); margin-bottom: 3px; }
+    .pay-panel-sub { font-size: 13px; color: var(--muted); margin-bottom: 18px; line-height: 1.4; }
+    .pay-amount-box { text-align: center; padding: 12px 0 16px; }
+    .pay-amount-lbl { font-size: 10px; font-weight: 700; letter-spacing: .5px; text-transform: uppercase; color: var(--muted); margin-bottom: 6px; }
+    .pay-amount-val { font-size: 30px; font-weight: 700; color: var(--text); }
+    .btn-pay-online {
+      width: 100%; display: flex; align-items: center; justify-content: center; gap: 7px;
+      padding: 12px; background: #16A34A; border: none; border-radius: 8px;
+      font-family: var(--font); font-size: 14px; font-weight: 600; color: #fff;
+      cursor: pointer; transition: background .2s; margin-bottom: 10px;
+    }
+    .btn-pay-online:hover { background: #15803D; }
+    .pay-or { text-align: center; font-size: 12px; color: var(--muted); margin-bottom: 10px; }
+    .btn-pay-credit {
+      width: 100%; display: flex; align-items: center; justify-content: center;
+      padding: 11px; border: 1.5px solid var(--border); border-radius: 8px;
+      background: var(--white); font-family: var(--font); font-size: 14px;
+      font-weight: 500; color: var(--text); cursor: pointer; transition: all .2s;
+    }
+    .btn-pay-credit:hover { border-color: var(--primary); color: var(--primary); }
+    .pay-secure { margin-top: 14px; text-align: center; font-size: 11px; color: var(--muted); display: flex; align-items: center; justify-content: center; gap: 4px; }
+    .pay-issued { text-align: center; margin-top: 8px; font-size: 11px; color: var(--muted); }
+
+    /* ══ TOAST ════════════════════════════════════════════════ */
+    #toast {
+      position: fixed; bottom: 24px; right: 24px;
+      background: var(--text); color: #fff; border-radius: 10px;
+      padding: 14px 20px; font-size: 13px; font-family: var(--font);
+      box-shadow: 0 4px 20px rgba(0,0,0,.2); z-index: 999;
+      max-width: 300px; display: none;
+    }
+    @keyframes fadeUp { from { opacity:0; transform:translateY(8px); } to { opacity:1; transform:translateY(0); } }
+    #toast.show { display: block; animation: fadeUp .3s ease; }
+
+    /* shake defined above with .slide-viewport */
+
+    @media(max-width:680px){
+      .nav-links,.btn-quote { display: none; }
+      .site-main { padding: 20px 14px 60px; }
+      .card-head,.card-body,.card-foot { padding-left: 18px; padding-right: 18px; }
+      .g2 { grid-template-columns: 1fr; }
+      .review-layout { flex-direction: column; }
+      .pay-panel { width: 100%; }
+      .step-labels { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ══ NAVBAR ══ -->
+<nav class="site-nav">
+  <div class="nav-inner">
+    <a href="#" class="nav-logo">
+      <svg class="logo-icon" viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="21" cy="21" r="21" fill="#EEF0FA"/>
+        <path d="M8 22C11.5 17.5 14.5 26 18 22C21.5 18 24.5 26 28 22C30.5 18.5 33 22.5 35 21" stroke="#616DB3" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+        <path d="M8 28.5C11.5 24 14.5 32.5 18 28.5C21.5 24.5 24.5 32.5 28 28.5C30.5 25 33 29 35 27.5" stroke="#616DB3" stroke-width="1.8" stroke-linecap="round" fill="none" opacity="0.45"/>
+        <circle cx="21" cy="11.5" r="3.5" fill="#616DB3"/>
+      </svg>
+      <div class="logo-wordmark">
+        <div class="logo-brand">Solar<em>elle</em></div>
+        <div class="logo-sub">Insurance</div>
+      </div>
+    </a>
+
+    <ul class="nav-links">
+      <li><a href="#">Personal <i class="ti ti-chevron-down"></i></a></li>
+      <li><a href="#">Corporate <i class="ti ti-chevron-down"></i></a></li>
+      <li><a href="#">About <i class="ti ti-chevron-down"></i></a></li>
+      <li><a href="#" class="active">Buy Online <i class="ti ti-chevron-down"></i></a></li>
+      <li><a href="#">Policy Verification</a></li>
+    </ul>
+
+    <a href="#" class="btn-quote">Get Quote</a>
+  </div>
+</nav>
+
+<!-- ══ MAIN ══ -->
+<main class="site-main">
+
+  <!-- STEPPER -->
+  <div class="stepper">
+    <div class="step-item active" id="si-0">
+      <div class="step-circle"><span class="snum">1</span><i class="ti ti-check" style="display:none;font-size:15px"></i></div>
+      <div class="step-labels"><div class="step-name">Vehicle Info</div><div class="step-hint">Type &amp; registration</div></div>
+    </div>
+    <div class="step-item" id="si-1">
+      <div class="step-circle"><span class="snum">2</span><i class="ti ti-check" style="display:none;font-size:15px"></i></div>
+      <div class="step-labels"><div class="step-name">Owner Info</div><div class="step-hint">Personal &amp; contact</div></div>
+    </div>
+    <div class="step-item" id="si-2">
+      <div class="step-circle"><span class="snum">3</span><i class="ti ti-check" style="display:none;font-size:15px"></i></div>
+      <div class="step-labels"><div class="step-name">Policy Details</div><div class="step-hint">Premium &amp; period</div></div>
+    </div>
+    <div class="step-item" id="si-3">
+      <div class="step-circle"><span class="snum">4</span><i class="ti ti-check" style="display:none;font-size:15px"></i></div>
+      <div class="step-labels"><div class="step-name">Payment</div><div class="step-hint">Review &amp; pay</div></div>
+    </div>
+  </div>
+
+  <!-- WIZARD CARD -->
+  <div class="wizard-card">
+
+    <!-- slide-viewport clips horizontal overflow; slide-track holds all 4 slides -->
+    <div class="slide-viewport" id="slide-viewport">
+    <div class="slide-track" id="slide-track">
+
+    <!-- ── STEP 1: Vehicle Info ── -->
+    <div class="slide" id="slide-0">
+      <div class="card-head">
+        <div class="card-step-tag">Step 1 of 4</div>
+        <div class="card-title">Vehicle Lookup</div>
+        <div class="card-sub">Enter the vehicle details to begin your insurance application</div>
+      </div>
+      <div class="card-body">
+        <div class="fsec">
+          <div class="field" id="f-vtype">
+            <label>Vehicle Type <span class="req">*</span></label>
+            <select id="vtype">
+              <option value="">-- Select Vehicle Type --</option>
+              <option>Private Car</option>
+              <option>Motorcycle</option>
+              <option>Van</option>
+              <option>Bus / Minibus</option>
+              <option>Goods Vehicle</option>
+            </select>
+            <span class="err-msg">Please select a vehicle type.</span>
+          </div>
+        </div>
+        <div class="fsec">
+          <div class="field" id="f-regno">
+            <label>Vehicle Registration Number <span class="req">*</span></label>
+            <input type="text" id="regno" placeholder="e.g. C4A2345" maxlength="10" autocomplete="off" oninput="this.value=this.value.toUpperCase()">
+            <span class="err-msg">Please enter a valid registration number.</span>
+          </div>
+        </div>
+      </div>
+    </div><!-- /slide-0 -->
+
+    <!-- ── STEP 2: Owner Info ── -->
+    <div class="slide" id="slide-1">
+      <div class="card-head">
+        <div class="card-step-tag">Step 2 of 4</div>
+        <div class="card-title">Owner Information</div>
+        <div class="card-sub">Personal, address and contact details of the vehicle owner</div>
+      </div>
+      <div class="card-body">
+
+        <!-- Personal -->
+        <div class="fsec">
+          <div class="sec-head">
+            <div class="sec-icon"><i class="ti ti-user"></i></div>
+            <div class="sec-title">Personal Details</div>
+          </div>
+          <div class="grid mb16">
+            <div class="field" id="f-fullname">
+              <label>Owner Full Name <span class="req">*</span></label>
+              <input type="text" id="fullname" placeholder="Full legal name as per ID">
+              <span class="err-msg">Full name is required.</span>
+            </div>
+          </div>
+          <div class="grid g2">
+            <div class="field" id="f-idtype">
+              <label>Identification Type <span class="req">*</span></label>
+              <select id="idtype">
+                <option value="">Select type</option>
+                <option value="NIC">National Identity Card</option>
+                <option value="Passport">Passport</option>
+                <option value="Driving Licence">Driving Licence</option>
+                <option value="Company Reg">Company Registration</option>
+              </select>
+              <span class="err-msg">Please select an ID type.</span>
+            </div>
+            <div class="field" id="f-idnum">
+              <label>NIC Number <span class="req">*</span></label>
+              <input type="text" id="idnum" placeholder="e.g. A123456">
+              <span class="err-msg">ID number is required.</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Address -->
+        <div class="fsec">
+          <div class="sec-head">
+            <div class="sec-icon"><i class="ti ti-map-pin"></i></div>
+            <div class="sec-title">Address Details</div>
+          </div>
+          <div class="grid mb16">
+            <div class="field" id="f-addr1">
+              <label>Street Address / House <span class="req">*</span></label>
+              <input type="text" id="addr1" placeholder="Street, house name or block number">
+              <span class="err-msg">Address is required.</span>
+            </div>
+          </div>
+          <div class="grid g2">
+            <div class="field" id="f-atoll">
+              <label>Atoll <span class="req">*</span></label>
+              <select id="atoll" onchange="populateIslands()">
+                <option value="">-- Select Atoll --</option>
+                <option>Malé City</option><option>Addu City</option><option>Alif Alif</option>
+                <option>Alif Dhaal</option><option>Baa</option><option>Dhaalu</option>
+                <option>Faafu</option><option>Gaafu Alif</option><option>Gaafu Dhaalu</option>
+                <option>Haa Alif</option><option>Haa Dhaalu</option><option>Kaafu</option>
+                <option>Laamu</option><option>Lhaviyani</option><option>Meemu</option>
+                <option>Noonu</option><option>Raa</option><option>Seenu</option>
+                <option>Shaviyani</option><option>Thaa</option><option>Vaavu</option>
+              </select>
+              <span class="err-msg">Please select an atoll.</span>
+            </div>
+            <div class="field" id="f-island">
+              <label>Island <span class="req">*</span></label>
+              <select id="island" disabled>
+                <option value="">Select an atoll first</option>
+              </select>
+              <span class="err-msg">Please select an island.</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Contact -->
+        <div class="fsec">
+          <div class="sec-head">
+            <div class="sec-icon"><i class="ti ti-phone"></i></div>
+            <div class="sec-title">Contact Details</div>
+          </div>
+          <div class="grid g2">
+            <div class="field" id="f-phone">
+              <label>Mobile Number <span class="req">*</span></label>
+              <div class="prefix-wrap">
+                <div class="prefix-label">+960</div>
+                <input type="tel" id="phone" placeholder="7654321" maxlength="7">
+              </div>
+              <span class="err-msg">Enter a valid 7-digit number.</span>
+            </div>
+            <div class="field" id="f-email">
+              <label>Email Address</label>
+              <input type="email" id="email" placeholder="owner@example.com">
+              <span class="err-msg">Enter a valid email address.</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div><!-- /slide-1 -->
+
+    <!-- ── STEP 3: Policy Details ── -->
+    <div class="slide" id="slide-2">
+      <div class="card-head">
+        <div class="card-step-tag">Step 3 of 4</div>
+        <div class="card-title">Policy Details</div>
+        <div class="card-sub">Set the coverage period, premium and proposal reference</div>
+      </div>
+      <div class="card-body">
+
+        <div class="fsec">
+          <div class="sec-head">
+            <div class="sec-icon"><i class="ti ti-file-description"></i></div>
+            <div class="sec-title">Policy Reference</div>
+          </div>
+          <div class="grid g2 mb16">
+            <div class="field">
+              <label>Vehicle</label>
+              <input type="text" id="ref-vehicle" class="readonly-field" readonly>
+            </div>
+            <div class="field">
+              <label>Owner</label>
+              <input type="text" id="ref-owner" class="readonly-field" readonly>
+            </div>
+          </div>
+          <div class="grid g2">
+            <div class="field" id="f-propnum">
+              <label>Proposal Number <span class="req">*</span></label>
+              <input type="text" id="propnum" placeholder="e.g. PROP-20250001">
+              <span class="err-msg">Proposal number is required.</span>
+            </div>
+            <div class="field" id="f-issuedate">
+              <label>Issuing Date <span class="req">*</span></label>
+              <input type="date" id="issuedate">
+              <span class="err-msg">Please select an issuing date.</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="fsec">
+          <div class="sec-head">
+            <div class="sec-icon"><i class="ti ti-currency-dollar"></i></div>
+            <div class="sec-title">Premium &amp; Coverage Period</div>
+          </div>
+          <div class="grid mb16">
+            <div class="field" id="f-premium">
+              <label>Premium Amount (MVR) <span class="req">*</span></label>
+              <input type="number" id="premium" placeholder="0.00" step="0.01" min="0">
+              <span class="err-msg">Please enter the premium amount.</span>
+            </div>
+          </div>
+          <div class="grid g2">
+            <div class="field" id="f-startdate">
+              <label>Period From <span class="req">*</span></label>
+              <input type="date" id="startdate">
+              <span class="err-msg">Please select a start date.</span>
+            </div>
+            <div class="field">
+              <label>Period To</label>
+              <input type="date" id="enddate" class="readonly-field" readonly>
+              <span class="hint">Auto: 1 year from start</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div><!-- /slide-2 -->
+
+    <!-- ── STEP 4: Review & Payment ── -->
+    <div class="slide" id="slide-3">
+      <div class="card-head">
+        <div class="card-step-tag">Step 4 of 4</div>
+        <div class="card-title">Review &amp; Payment</div>
+        <div class="card-sub">Confirm all details before completing your policy purchase</div>
+      </div>
+      <div class="card-body">
+        <div class="review-layout">
+
+          <!-- Summary card -->
+          <div class="review-summary">
+            <div class="rev-head">
+              <div class="rev-pol-ref" id="s-polref">—</div>
+              <div class="rev-pol-title">Third Party Motor Insurance</div>
+              <div class="rev-pol-dates" id="s-dates">—</div>
+            </div>
+            <div class="rev-grid2">
+              <div class="rev-cell"><div class="rc-label">Vehicle Type</div><div class="rc-val" id="s-vtype">—</div></div>
+              <div class="rev-cell"><div class="rc-label">Registration</div><div class="rc-val" id="s-regno">—</div></div>
+              <div class="rev-cell full"><div class="rc-label">Owner</div><div class="rc-val" id="s-owner">—</div></div>
+              <div class="rev-cell full"><div class="rc-label">Address</div><div class="rc-val" id="s-addr">—</div></div>
+              <div class="rev-cell"><div class="rc-label">Mobile</div><div class="rc-val" id="s-phone">—</div></div>
+              <div class="rev-cell"><div class="rc-label">Email</div><div class="rc-val" id="s-email">—</div></div>
+              <div class="rev-cell"><div class="rc-label">Proposal No.</div><div class="rc-val" id="s-propnum">—</div></div>
+              <div class="rev-cell"><div class="rc-label">Issuing Date</div><div class="rc-val" id="s-issuedate">—</div></div>
+            </div>
+            <div class="rev-total">
+              <div class="rc-label">Total Premium</div>
+              <div class="rc-val" id="s-total">MVR 0.00</div>
+            </div>
+          </div>
+
+          <!-- Payment panel -->
+          <div class="pay-panel">
+            <div class="pay-panel-title">Complete Payment</div>
+            <div class="pay-panel-sub">Choose your preferred payment method below</div>
+            <div class="pay-amount-box">
+              <div class="pay-amount-lbl">Amount Due</div>
+              <div class="pay-amount-val" id="pay-amount">MVR 0.00</div>
+            </div>
+            <button class="btn-pay-online" onclick="handlePay('Online Payment')">
+              <i class="ti ti-check"></i> Pay Online Now
+            </button>
+            <div class="pay-or">or</div>
+            <button class="btn-pay-credit" onclick="handlePay('Account Credit')">
+              Use Account Credit
+            </button>
+            <div class="pay-secure">
+              <i class="ti ti-lock" style="font-size:12px"></i> Secured by 256-bit SSL encryption
+            </div>
+            <div class="pay-issued">Policy will be issued immediately after payment</div>
+          </div>
+
+        </div>
+      </div>
+    </div><!-- /slide-3 -->
+
+    </div><!-- /slide-track -->
+    </div><!-- /slide-viewport -->
+
+    <!-- FOOTER NAV -->
+    <div class="card-foot">
+      <button class="btn-back" id="btn-back" onclick="goBack()" style="visibility:hidden">
+        <i class="ti ti-arrow-left"></i> Back
+      </button>
+      <span class="step-counter">Step <strong id="step-num">1</strong> of 4</span>
+      <button class="btn-next" id="btn-next" onclick="goNext()">
+        Continue <i class="ti ti-arrow-right"></i>
+      </button>
+    </div>
+
+  </div><!-- /.wizard-card -->
+</main>
+
+<div id="toast"></div>
+
+<script>
+  /* ── Island data ─────────────────────────────────────────── */
+  const ISLANDS = {
+    'Malé City':    ['Malé','Hulhumalé','Villingili'],
+    'Addu City':    ['Hithadhoo','Feydhoo','Maradhoo','Maradhoo-Feydhoo','Hulhumeedhoo','Meedhoo'],
+    'Alif Alif':    ['Rasdhoo','Ukulhas','Thoddoo','Mathiveri','Himandhoo','Feridhoo','Bodufolhudhoo','Maalhos','Mahibadhoo'],
+    'Alif Dhaal':   ['Mandhoo','Dhangethi','Maamigili','Omadhoo','Fenfushi','Nilandhoo','Dhigurah','Hangnaameedhoo','Kunburudhoo'],
+    'Baa':          ['Eydhafushi','Kendhoo','Maalhos','Dhonfanu','Goidhoo','Fehendhoo','Thulhaadhoo','Hithaadhoo','Kudarikilu','Kamadhoo'],
+    'Dhaalu':       ['Kudahuvadhoo','Bandidhoo','Rinbudhoo','Meedhoo','Maavaadhoo','Hulhudheli','Vaanee','Ribudhoo','Maaenboodhoo'],
+    'Faafu':        ['Magoodhoo','Nilandhoo','Feeali','Dharanboodhoo','Biledhdhoo','Adinganaa'],
+    'Gaafu Alif':   ['Vilingili','Dhevvadhoo','Kolamaafushi','Nilandhoo','Maamendhoo','Kondey'],
+    'Gaafu Dhaalu': ['Thinadhoo','Gadhdhoo','Fiyoaree','Madaveli','Faresmaathodaa','Hoadedhdhoo'],
+    'Haa Alif':     ['Dhidhdhoo','Ihavandhoo','Utheemu','Baarah','Muraidhoo','Filladhoo','Maarandhoo','Thakandhoo','Hoarafushi'],
+    'Haa Dhaalu':   ['Kulhudhuffushi','Nolhivaranfaru','Nolhivaram','Hanimaadhoo','Kumundhoo','Vaikaradhoo','Finey','Naivaadhoo'],
+    'Kaafu':        ['Thulusdhoo','Guraidhoo','Maafushi','Kaashidhoo','Huraa','Dhiffushi','Himmafushi','Gaafaru','Gulhi'],
+    'Laamu':        ['Fonadhoo','Isdhoo','Mundoo','Dhanbidhoo','Maavah','Kunahandhoo','Maabaidhoo','Gan','Hithadhoo'],
+    'Lhaviyani':    ['Naifaru','Hinnavaru','Olhuvelifushi','Kurendhoo','Felivaru'],
+    'Meemu':        ['Muli','Veyvah','Maduvvari','Dhiggaru','Kolhufushi','Naalaafushi'],
+    'Noonu':        ['Manadhoo','Fodhdhoo','Velidhoo','Holhudhoo','Maafaru','Kudafari','Landhoo'],
+    'Raa':          ['Ugoofaaru','Alifushi','Rasgetheemu','Dhuvaafaru','Maduvvari','Hulhidhoo','Kandholhudhoo'],
+    'Seenu':        ['Hithadhoo','Feydhoo','Maradhoo'],
+    'Shaviyani':    ['Funadhoo','Narudhoo','Feevah','Kanditheemu','Goidhoo','Foakaidhoo','Milandhoo'],
+    'Thaa':         ['Veymandoo','Guraidhoo','Thimarafushi','Vilufushi','Kinbidhoo'],
+    'Vaavu':        ['Felidhoo','Fulidhoo','Rakeedhoo','Thinadhoo','Keyodhoo']
+  };
+
+  function populateIslands() {
+    const atoll  = document.getElementById('atoll').value;
+    const sel    = document.getElementById('island');
+    sel.innerHTML = '';
+    if (!atoll) {
+      sel.add(new Option('Select an atoll first', ''));
+      sel.disabled = true;
+    } else {
+      sel.add(new Option('Select an island', ''));
+      (ISLANDS[atoll] || []).forEach(isl => sel.add(new Option(isl, isl)));
+      sel.disabled = false;
+    }
+    document.getElementById('f-island').classList.remove('invalid');
+  }
+
+  /* ── State ───────────────────────────────────────────────── */
+  let step = 0;
+
+  /* default issuing date */
+  document.getElementById('issuedate').value = new Date().toISOString().split('T')[0];
+
+  /* Period To = Period From + 1 year */
+  document.getElementById('startdate').addEventListener('change', () => {
+    const sd = document.getElementById('startdate').value;
+    if (!sd) return;
+    const d = new Date(sd + 'T00:00:00');
+    d.setFullYear(d.getFullYear() + 1);
+    d.setDate(d.getDate() - 1);
+    document.getElementById('enddate').value = d.toISOString().split('T')[0];
+  });
+
+  /* clear invalid on input/change */
+  ['vtype','regno','fullname','idtype','idnum','addr1','atoll','island',
+   'phone','email','propnum','issuedate','premium','startdate'].forEach(id => {
+    const el = document.getElementById(id);
+    if (!el) return;
+    ['input','change'].forEach(ev => el.addEventListener(ev, () => {
+      const f = el.closest('.field'); if (f) f.classList.remove('invalid');
+    }));
+  });
+
+  /* ── Validation ──────────────────────────────────────────── */
+  function mark(id, msg) {
+    const f = document.getElementById('f-' + id);
+    if (!f) return;
+    f.classList.add('invalid');
+    if (msg) { const e = f.querySelector('.err-msg'); if (e) e.textContent = msg; }
+    shake(f);
+  }
+
+  function shake(el) {
+    el.classList.remove('shake'); void el.offsetWidth; el.classList.add('shake');
+    el.addEventListener('animationend', () => el.classList.remove('shake'), { once: true });
+  }
+
+  function validate(s) {
+    let ok = true;
+    if (s === 0) {
+      if (!document.getElementById('vtype').value)        { mark('vtype'); ok = false; }
+      if (!document.getElementById('regno').value.trim()) { mark('regno'); ok = false; }
+    } else if (s === 1) {
+      if (!document.getElementById('fullname').value.trim()) { mark('fullname'); ok = false; }
+      if (!document.getElementById('idtype').value)          { mark('idtype');   ok = false; }
+      if (!document.getElementById('idnum').value.trim())    { mark('idnum');    ok = false; }
+      if (!document.getElementById('addr1').value.trim())    { mark('addr1');    ok = false; }
+      if (!document.getElementById('atoll').value)           { mark('atoll');    ok = false; }
+      if (!document.getElementById('island').value)          { mark('island');   ok = false; }
+      if (!/^\d{7}$/.test(document.getElementById('phone').value.trim())) { mark('phone'); ok = false; }
+    } else if (s === 2) {
+      if (!document.getElementById('propnum').value.trim())  { mark('propnum');   ok = false; }
+      if (!document.getElementById('issuedate').value)       { mark('issuedate'); ok = false; }
+      const prem = parseFloat(document.getElementById('premium').value);
+      if (!prem || prem <= 0)                                { mark('premium');   ok = false; }
+      if (!document.getElementById('startdate').value)       { mark('startdate'); ok = false; }
+    }
+    return ok;
+  }
+
+  /* ── Step 3 readonly refs ────────────────────────────────── */
+  function fillStep3Refs() {
+    const vt  = document.getElementById('vtype').value;
+    const reg = document.getElementById('regno').value;
+    document.getElementById('ref-vehicle').value = (vt || '—') + ' / ' + (reg || '—');
+    document.getElementById('ref-owner').value   = document.getElementById('fullname').value || '—';
+  }
+
+  /* ── Step 4 summary ──────────────────────────────────────── */
+  function fmtDate(str) {
+    if (!str) return '—';
+    return new Date(str + 'T00:00:00').toLocaleDateString('en-GB', { day:'2-digit', month:'short', year:'numeric' });
+  }
+
+  function genRef() {
+    const d = new Date();
+    return 'SOL' +
+      String(d.getFullYear()).slice(2) +
+      String(d.getMonth()+1).padStart(2,'0') +
+      String(d.getDate()).padStart(2,'0') +
+      String(Math.floor(100000+Math.random()*900000)).slice(0,6);
+  }
+
+  function fillSummary() {
+    const prem = parseFloat(document.getElementById('premium').value) || 0;
+    const mvr  = 'MVR ' + prem.toFixed(2);
+    document.getElementById('s-total').textContent   = mvr;
+    document.getElementById('pay-amount').textContent = mvr;
+
+    document.getElementById('s-polref').textContent  = genRef();
+    document.getElementById('s-vtype').textContent   = document.getElementById('vtype').value   || '—';
+    document.getElementById('s-regno').textContent   = document.getElementById('regno').value   || '—';
+    document.getElementById('s-owner').textContent   =
+      (document.getElementById('fullname').value || '—') + ' / ' +
+      (document.getElementById('idnum').value    || '—');
+
+    const addr  = document.getElementById('addr1').value;
+    const isl   = document.getElementById('island').value;
+    const atoll = document.getElementById('atoll').value;
+    document.getElementById('s-addr').textContent =
+      [addr, isl, atoll ? atoll + ' Atoll' : ''].filter(Boolean).join(', ') || '—';
+
+    const ph = document.getElementById('phone').value;
+    document.getElementById('s-phone').textContent    = ph ? '+960 ' + ph : '—';
+    document.getElementById('s-email').textContent    = document.getElementById('email').value    || '—';
+    document.getElementById('s-propnum').textContent  = document.getElementById('propnum').value  || '—';
+    document.getElementById('s-issuedate').textContent = fmtDate(document.getElementById('issuedate').value);
+
+    const sd = document.getElementById('startdate').value;
+    const ed = document.getElementById('enddate').value;
+    document.getElementById('s-dates').textContent =
+      (sd ? fmtDate(sd) : '—') + ' → ' + (ed ? fmtDate(ed) : '—');
+  }
+
+  /* ── Navigation ──────────────────────────────────────────── */
+  function setViewportHeight(idx) {
+    const vp = document.getElementById('slide-viewport');
+    const sl = document.getElementById('slide-' + idx);
+    /* Temporarily auto so we can measure then lock */
+    vp.style.height = sl.offsetHeight + 'px';
+  }
+
+  function moveTo(target) {
+    const track = document.getElementById('slide-track');
+    const vp    = document.getElementById('slide-viewport');
+
+    /* ── Horizontal slide: each slide = 25 % of the 400 %-wide track ── */
+    track.style.transform = `translateX(-${target * 25}%)`;
+
+    /* ── Height transition to match the incoming slide's content ─────── */
+    vp.style.height = document.getElementById('slide-' + target).offsetHeight + 'px';
+
+    step = target;
+    document.getElementById('step-num').textContent = step + 1;
+    document.getElementById('btn-back').style.visibility = step === 0 ? 'hidden' : 'visible';
+
+    const btnNext = document.getElementById('btn-next');
+    if (step === 3) {
+      btnNext.innerHTML = '<i class="ti ti-printer"></i> Print Policy';
+      btnNext.onclick   = () => showToast('Preparing policy document for print…');
+    } else {
+      btnNext.innerHTML = 'Continue <i class="ti ti-arrow-right"></i>';
+      btnNext.onclick   = goNext;
+    }
+
+    document.querySelectorAll('.step-item').forEach((si, i) => {
+      si.classList.remove('active', 'done');
+      const snum = si.querySelector('.snum');
+      const icon = si.querySelector('i');
+      if (i < step)        { si.classList.add('done');   snum.style.display='none';  icon.style.display='block'; }
+      else if (i === step) { si.classList.add('active'); snum.style.display='block'; icon.style.display='none';  }
+      else                 {                             snum.style.display='block'; icon.style.display='none';  }
+    });
+
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  /* Initialise viewport height on first load */
+  window.addEventListener('load', () => setViewportHeight(0));
+  /* Keep it correct if the window is resized */
+  window.addEventListener('resize', () => setViewportHeight(step));
+
+  function goNext() {
+    if (!validate(step)) return;
+    if (step === 3) return;
+    if (step === 1) fillStep3Refs();
+    if (step === 2) fillSummary();
+    moveTo(step + 1);
+  }
+
+  function goBack() { if (step > 0) moveTo(step - 1); }
+
+  function handlePay(method) { showToast('Redirecting to ' + method + '…'); }
+
+  function showToast(msg) {
+    const t = document.getElementById('toast');
+    t.textContent = msg; t.classList.add('show');
+    clearTimeout(t._t);
+    t._t = setTimeout(() => t.classList.remove('show'), 3200);
+  }
+</script>
+</body>
+</html>
